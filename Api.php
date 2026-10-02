@@ -39,13 +39,13 @@ final class Api
             $status = $response->getStatusCode();
             $envelope = json_decode($response->getContent(false), true);
         } catch (HttpExceptionInterface|\JsonException $e) {
-            throw new CarrierException('zto-express', 'ZTO request failed: '.$e->getMessage(), null, $e);
+            throw new CarrierException('zto_express', 'ZTO request failed: '.$e->getMessage(), null, $e);
         }
         if ($status >= 400 || !\is_array($envelope)) {
-            throw new CarrierException('zto-express', sprintf('ZTO answered HTTP %d.', $status));
+            throw new CarrierException('zto_express', sprintf('ZTO answered HTTP %d.', $status));
         }
         if (empty($envelope['status'])) {
-            throw new CarrierException('zto-express', (string) ($envelope['message'] ?? $envelope['msg'] ?? 'ZTO refused the request.'), isset($envelope['statusCode']) ? (string) $envelope['statusCode'] : (isset($envelope['code']) ? (string) $envelope['code'] : null));
+            throw new CarrierException('zto_express', (string) ($envelope['message'] ?? $envelope['msg'] ?? 'ZTO refused the request.'), isset($envelope['statusCode']) ? (string) $envelope['statusCode'] : (isset($envelope['code']) ? (string) $envelope['code'] : null));
         }
         $result = $envelope['result'] ?? $envelope['data'] ?? [];
 

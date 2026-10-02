@@ -46,10 +46,10 @@ final class ShippingAction implements ActionInterface, ApiAwareInterface
         ], static fn ($v) => null !== $v && '' !== $v));
         $number = (string) ($data['billCode'] ?? $data['mailNo'] ?? '');
         if ('' === $number) {
-            throw new CarrierException('zto-express', 'ZTO issued no bill code.');
+            throw new CarrierException('zto_express', 'ZTO issued no bill code.');
         }
         $print = isset($data['printData']) ? json_encode($data['printData'], \JSON_UNESCAPED_UNICODE) : null;
-        $request->setResult(new Label('zto-express', $number, $print ?: null, 'application/json', null, 'https://www.zto.com/express/expressCheck.html?txtbill='.rawurlencode($number)));
+        $request->setResult(new Label('zto_express', $number, $print ?: null, 'application/json', null, 'https://www.zto.com/express/expressCheck.html?txtbill='.rawurlencode($number)));
     }
 
     private static function party(Address $a): array

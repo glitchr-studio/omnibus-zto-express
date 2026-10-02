@@ -25,7 +25,7 @@ final class ZtoExpressGatewayFactory extends GatewayFactory
     protected function populateConfig(Config $config): void
     {
         $config->defaults([
-            'omnibus.factory_name' => 'zto-express',
+            'omnibus.factory_name' => 'zto_express',
             'omnibus.factory_title' => 'ZTO Express',
             'omnibus.required_options' => ['company_id', 'key'],
             'partner_code' => null,

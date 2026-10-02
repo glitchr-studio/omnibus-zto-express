@@ -7,8 +7,8 @@ Prices come from configuration (`rates`): ZTO quotes by contract.
 ```yaml
 omnibus:
     gateways:
-        zto-express:
-            factory: zto-express
+        zto_express:
+            factory: zto_express
             options:
                 company_id: '%env(ZTO_COMPANY_ID)%'
                 key: '%env(ZTO_KEY)%'

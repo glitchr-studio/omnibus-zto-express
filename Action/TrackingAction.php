@@ -42,7 +42,7 @@ final class TrackingAction implements ActionInterface, ApiAwareInterface
             $events[] = new TrackingEvent(new \DateTimeImmutable((string) $t['scanDate'], new \DateTimeZone('Asia/Shanghai')), self::status($t['scanType'] ?? null, $t['desc'] ?? null), (string) ($t['desc'] ?? $t['scanType'] ?? ''), $t['scanSite'] ?? $t['scanCity'] ?? null, $t['scanType'] ?? null);
         }
         usort($events, static fn (TrackingEvent $a, TrackingEvent $b) => $a->at <=> $b->at);
-        $request->setResult(new TrackingModel('zto-express', $request->trackingNumber, $events ? $events[array_key_last($events)]->status : TrackingStatus::UNKNOWN, $events));
+        $request->setResult(new TrackingModel('zto_express', $request->trackingNumber, $events ? $events[array_key_last($events)]->status : TrackingStatus::UNKNOWN, $events));
     }
 
     private static function status(?string $type, ?string $desc): TrackingStatus
