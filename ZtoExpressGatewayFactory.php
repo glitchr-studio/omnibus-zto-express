@@ -3,7 +3,6 @@
 namespace Omnibus\ZtoExpress;
 
 use Omnibus\Config;
-use Omnibus\Exception\InvalidConfigException;
 use Omnibus\GatewayFactory;
 use Omnibus\ZtoExpress\Action\CancelAction;
 use Omnibus\ZtoExpress\Action\ShippingAction;
@@ -31,7 +30,7 @@ final class ZtoExpressGatewayFactory extends GatewayFactory
             'partner_code' => null,
             'sandbox' => false,
             'omnibus.api' => function (Config $c) {
-                $http = $this->http ?? (class_exists(HttpClient::class) ? HttpClient::create() : throw new InvalidConfigException('The "zto-express" gateway needs symfony/http-client.'));
+                $http = $this->http ?? HttpClient::create();
 
                 return new Api($http, (string) $c['company_id'], (string) $c['key'], $c['partner_code'] ?: null, (bool) $c['sandbox']);
             },
