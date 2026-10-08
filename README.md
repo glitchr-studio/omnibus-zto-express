@@ -35,4 +35,4 @@ key (the test environment first) and the partner code for electronic waybills.
 Built from ZTO's published open platform documentation and tested on recorded answers;
 **unverified** against the test environment until an account's keys are at hand.
 
-License: LGPL-3.0-or-later.
+License: MIT since 2026-10-09; earlier versions remain published under LGPL-3.0-or-later.
